@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pois-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pois-api
+  template:
+    metadata:
+      labels:
+        app: pois-api
+    spec:
+      imagePullSecrets:
+      - name: dockerhub-secret 
+      containers:
+      - name: pois-api
+        image: fercz/pois-api:v1.3
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_URI
+          value: "mongodb+srv://geomatica_user:58VCQW84myk1Yc64@cluster0.s7t3a.mongodb.net/geomatica_db"
+        - name: SERVER_PORT
+          value: "8080"
