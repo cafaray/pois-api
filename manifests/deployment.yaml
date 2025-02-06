@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pois-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pois-api
+  template:
+    metadata:
+      labels:
+        app: pois-api
+    spec:
+      containers:
+        - name: pois-api
+          image: fercz/pois-api:2.0
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: uri
