@@ -2,7 +2,7 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: pois-api
-  namespace: diplomado-fer 
+  namespace: diplomado-fer
 spec:
   template:
     metadata:
@@ -13,11 +13,13 @@ spec:
         - image: docker.io/fercz/pois-api:v1.3
           ports:
             - containerPort: 8080
-          env:  
+          env:
             - name: MONGO_URI
-              value: "mongodb+srv://geomatica_user:58VCQW84myk1Yc64@cluster0.s7t3a.mongodb.net/geomatica_db"
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret    # Usando el nombre de tu secreto
+                  key: uri              # La clave dentro del secreto que contiene la URI
             - name: SERVER_PORT
               value: "8080"
   traffic:
     - percent: 100
-
