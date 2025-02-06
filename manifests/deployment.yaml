@@ -12,15 +12,12 @@ spec:
       labels:
         app: pois-api
     spec:
-      imagePullSecrets:
-      - name: dockerhub-secret 
       containers:
-      - name: pois-api
-        image: fercz/pois-api:v1.3
-        ports:
-        - containerPort: 8080
-        env:
-        - name: MONGO_URI
-          value: "mongodb+srv://geomatica_user:58VCQW84myk1Yc64@cluster0.s7t3a.mongodb.net/geomatica_db"
-        - name: SERVER_PORT
-          value: "8080"
+        - name: pois-api
+          image: fercz/pois-api:2.0
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: uri
