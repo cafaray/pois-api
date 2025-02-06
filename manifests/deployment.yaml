@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: pois-api
-          image: fercz/pois-api:2.0
+          image: fercz/pois-api:v1.3
           env:
             - name: MONGO_URI
               valueFrom:
