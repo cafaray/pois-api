@@ -20,3 +20,12 @@ Esta es una **API REST** creada con **Spring Boot** para gestionar Puntos de Int
    ```bash
    git clone https://github.com/FerCz2489/pois-api.git
    cd pois-api
+2. Construye el maven
+   ```bash
+   mvn clean package
+3. Dockeriza la imagen
+   ```bash
+   Docker build
+4. Despliega en OpenShift
+   ```bash
+   Ocupa el manifiesto yaml que viene en los archivos para desplegarlo con comandos oc
