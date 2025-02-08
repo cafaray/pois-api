@@ -19,7 +19,6 @@ pipeline {
             }
         }
     }  
-}
 environment {
         DOCKERHUB_CREDENTIALS = credentials('fercz-docker-registry')
         DOCKER_IMAGE = 'fercz/pois-api:v1.4'
@@ -38,3 +37,4 @@ environment {
                 '''
           }
         }
+}
