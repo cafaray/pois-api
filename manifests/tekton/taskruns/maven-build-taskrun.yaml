@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
   generateName: maven-build-
-  namespace: diploe2-lfcz  #  Asegúrate de que sea el namespace correcto
+  namespace: diploe2-lfcz  
 spec:
   taskRef:
     kind: Task
