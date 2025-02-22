@@ -1,5 +1,5 @@
 # Imagen base de Java (requerida para Spring Boot)
-FROM openjdk:17-jdk-alpine
+FROM docker.io/library/openjdk:17-jdk-alpine
 
 # Establece el directorio de trabajo en el contenedor
 WORKDIR /app
