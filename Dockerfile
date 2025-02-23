@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apk add --no-cache curl
 
 # Copia el archivo JAR generado por Maven en el contenedor
-COPY target/pois-api-0.0.1-SNAPSHOT.jar app.jar
+COPY /workspace/source/target/pois-api-0.0.1-SNAPSHOT.jar app.jar
 
 # Expone el puerto de la aplicación
 EXPOSE 8080
