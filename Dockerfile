@@ -1,18 +1,13 @@
-# Imagen base de Java (requerida para Spring Boot)
-FROM docker.io/library/openjdk:17-jdk-alpine
+# Build Stage
+FROM maven:3.9.4-eclipse-temurin-17 AS builder
+WORKDIR /build
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Establece el directorio de trabajo en el contenedor
+# Runtime Stage
+FROM docker.io/khipu/openjdk17-alpine:latest
 WORKDIR /app
-
-# Instalar CURL
-RUN apk add --no-cache curl
-
-# Copia el archivo JAR generado por Maven en el contenedor
-COPY target/pois-api-0.0.1-SNAPSHOT.jar /app/app.jar
-
-# Expone el puerto de la aplicación
+# RUN apk add --no-cache curl
+COPY --from=builder /build/target/pois-api-0.0.1-SNAPSHOT.jar /app/app.jar
 EXPOSE 8080
-
-# Permite que la aplicación reciba variables de entorno en tiempo de ejecución
 ENTRYPOINT ["java", "-jar", "app.jar"]
-
